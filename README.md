@@ -39,6 +39,15 @@ python train_imitation.py --algo airl --cuda --env_id BipedalWalker-v3 --buffer 
 Here the rollout_length is the size of buffer for PPO within AIRL framework. The --buffer argument takes the collected demo from (2.) as input for train imitation learning.
 
 ## DAC-regularized AIRL
+Notice that:
+1. train_imitation.py and trainer.py need to be swapped to the ones in DAC-regularized-AIRL
+2. Put DAC-regularized-AIRL/dac_airl.py in gail_airl_ppo/algo
+
+The rest is the same as how you run AIRL, except that specification of alpha is needed:
+```
+python train_imitation.py --algo airl --cuda --env_id BipedalWalker-v3 --buffer buffers/BipedalWalker-v3/size10000_std0.01_prand0.0.pth --num_steps 1000000 --eval_interval 10000 --rollout_length 2000 --seed 0 --alpha 0.5
+```
+
 
 
 
