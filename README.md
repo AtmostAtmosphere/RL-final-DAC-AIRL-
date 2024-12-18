@@ -43,10 +43,18 @@ Here the rollout_length is the size of buffer for PPO within AIRL framework. The
 Notice that:
 1. train_imitation.py and trainer.py need to be swapped to the ones in DAC-regularized-AIRL
 2. Put DAC-regularized-AIRL/dac_airl.py in gail_airl_ppo/algo
-
-The rest is the same as how you run AIRL, except that specification of alpha is needed:
+3. Add gail_airl_ppo/algo/__init__.py with:
+   ```
+   from .dac_airl import AIRL_DAC
+   ```
+   and put the following line of code in ALGOS
+   ```
+   'airl+dac': AIRL_DAC
+   ```
+   
+The rest is the same as how you run AIRL, except that specification of alpha is needed and use "airl+dac" as --algo argument:
 ```
-python train_imitation.py --algo airl --cuda --env_id BipedalWalker-v3 --buffer buffers/BipedalWalker-v3/size10000_std0.01_prand0.0.pth --num_steps 1000000 --eval_interval 10000 --rollout_length 2000 --seed 0 --alpha 0.5
+python train_imitation.py --algo airl+dac --cuda --env_id BipedalWalker-v3 --buffer buffers/BipedalWalker-v3/size10000_std0.01_prand0.0.pth --num_steps 1000000 --eval_interval 10000 --rollout_length 2000 --seed 0 --alpha 0.5
 ```
 
 
