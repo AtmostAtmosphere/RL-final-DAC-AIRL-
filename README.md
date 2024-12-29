@@ -1,4 +1,4 @@
-# RL-final-DAC-AIRL
+# RL-final-DAC-AIRL-
 ## Setup
 Use python=3.7 to download the specified version of modules in requirements.txt
 
@@ -114,16 +114,14 @@ Note 2: The buffer_size determines the size of demo trajectories
 python train_imitation.py --algo airl --cuda --env_id BipedalWalker-v3 --buffer buffers/BipedalWalker-v3/size1000000_std0.01_prand0.0.pth --num_steps 100000 --eval_interval 10000 --rollout_length 2000 --seed 0
 ```
 
-Note: GAIL and AIRL -- can be modified through algo/__init  __.py
-
-Here the rollout_length is the size of buffer for PPO within AIRL framework. The --buffer argument takes the collected demo from (2.) as input for train imitation learning.
+Note: Here the rollout_length is the size of buffer for PPO within AIRL framework. The --buffer argument takes the collected demo from (2.) as input for train imitation learning.
 
 ## DAC-regularized AIRL
 
 Note that:
 1. train_imitation.py and trainer.py need to be swapped to the ones in DAC-regularized-AIRL
-2. Put DAC-regularized-AIRL/dac_airl.py in gail_airl_ppo/algo
-3. Add gail_airl_ppo/algo/__init__.py with:
+2. Put DAC-regularized-AIRL/dac_airl.py in AIRL/algo
+3. Add AIRL/algo/__init__.py with:
    ```
    from .dac_airl import AIRL_DAC
    ```
