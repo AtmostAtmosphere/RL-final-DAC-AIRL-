@@ -130,7 +130,7 @@ Note that:
    'airl+dac': AIRL_DAC
    ```
    
-**The rest is the same as how you run AIR**L, except that specification of alpha is needed and use "airl+dac" as --algo argument:
+**The rest is the same as how you run AIRL**, except that specification of alpha is needed and use "airl+dac" as --algo argument:
 
 ```
 python train_imitation.py --algo airl+dac --cuda --env_id BipedalWalker-v3 --buffer buffers/BipedalWalker-v3/size10000_std0.01_prand0.0.pth --num_steps 1000000 --eval_interval 10000 --rollout_length 2000 --seed 0 --alpha 0.5
