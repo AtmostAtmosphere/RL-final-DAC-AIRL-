@@ -1,4 +1,4 @@
-# RL-final-DAC-AIRL-
+# RL-final-DAC-AIRL
 ## Setup
 Use python=3.7 to download the specified version of modules in requirements.txt
 
@@ -25,7 +25,7 @@ Note: If you want to record through imageio, then the Python version must be 3.9
 
 ## DAC
 
-1. **Training the DAC Agent** (`train.py`):  
+### 1. **Training the DAC Agent** (`train.py`):  
    Trains a DAC (TD3 + Discriminator) agent using expert demonstration data. Produces model weights that can be loaded by other scripts.
 
 **Arguments:**
@@ -36,7 +36,7 @@ Note: If you want to record through imageio, then the Python version must be 3.9
 python train.py --num_steps 5000
 ```
 
-2. **Collecting Demonstration Data** (`collect_demo.py`):  
+### 2. **Collecting Demonstration Data** (`collect_demo.py`):  
    Uses the trained DAC agent to interact with the environment and produce new demonstration data for future training or analysis.
 
 **Arguments:**
@@ -54,7 +54,7 @@ python collect_demo.py --model_dir models --model_name DAC_policy --buffer_size 
 
 Output: Saves a `.pth` file with collected demonstration data.
 
-3. **Recording a Video** (`record_video.py`):  
+### 3. **Recording a Video** (`record_video.py`):  
    Loads a trained DAC agent and records its behavior in a video file. Now supports a `--hardcore` flag to run the `BipedalWalkerHardcore-v3` environment.
 
 **Arguments:**
@@ -72,7 +72,7 @@ python record_video.py --model_dir models --model_name DAC_policy --episodes 2 -
 
 Output: A `agent_video.mp4` file showing the agent in the hardcore environment.
 
-4. **Testing the Agent** (`testing.py`):  
+### 4. **Testing the Agent** (`testing.py`):  
    Loads a trained DAC agent and evaluates its performance across multiple test episodes. Users can specify a list of seeds, maximum steps per episode, and number of tests. Saves test results to a CSV file. Also supports a `--hardcore` flag to test in the hardcore environment.
 
 **Arguments:**
@@ -94,20 +94,22 @@ Output: A `test_results.csv` file containing the returns and steps taken in each
 
 ## AIRL
 
-1. **Train Expert Data with SAC** (`train_expert.py`):
+### 1. **Train Expert Data with SAC** (`train_expert.py`):
 ```
 python train_expert.py --cuda --env_id BipedalWalker-v3 --num_steps 100000 --seed 0
 ```
 **Note : Only for AIRL-only method, DAC-AIRL can skip this step**
 
-2. **Collect Demonstrationa** (`collect_demo.py`):
+### 2. **Collect Demonstrationa** (`collect_demo.py`):
 ```
 python collect_demo.py --cuda --env_id BipedalWalker-v3 --weight weights/BipedalWalker-v3.pth --buffer_size 1000000 --std 0.01 --p_rand 0.0 --seed 0
 ```
-*Note 1: The buffer_size determines the size of demo trajectories
-***Note 2: Only for AIRL-only method, DAC-AIRL can skip this step**
 
-3. **Train AIRL** (`train_imitation.py`):
+**Note 1: Only for AIRL-only method, DAC-AIRL can skip this step**
+
+Note 2: The buffer_size determines the size of demo trajectories
+
+### 3. **Train AIRL** (`train_imitation.py`):
 ```
 python train_imitation.py --algo airl --cuda --env_id BipedalWalker-v3 --buffer buffers/BipedalWalker-v3/size1000000_std0.01_prand0.0.pth --num_steps 100000 --eval_interval 10000 --rollout_length 2000 --seed 0
 ```
@@ -130,7 +132,7 @@ Note that:
    'airl+dac': AIRL_DAC
    ```
    
-The rest is the same as how you run AIRL, except that specification of alpha is needed and use "airl+dac" as --algo argument:
+**The rest is the same as how you run AIR**L, except that specification of alpha is needed and use "airl+dac" as --algo argument:
 
 ```
 python train_imitation.py --algo airl+dac --cuda --env_id BipedalWalker-v3 --buffer buffers/BipedalWalker-v3/size10000_std0.01_prand0.0.pth --num_steps 1000000 --eval_interval 10000 --rollout_length 2000 --seed 0 --alpha 0.5
