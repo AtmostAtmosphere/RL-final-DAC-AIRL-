@@ -1,6 +1,6 @@
 # RL-final-DAC-AIRL
 ## Setup
-Use python=3.7 to download the specified version of modules in requirements.txt
+Please use python=3.7 as python environment
 
 (If not, serveral bugs may appear: new version has no "env(seed)", "env.step" return 5 instead of 4 values, etc)
 
@@ -13,16 +13,15 @@ sudo apt-get install python3.7-dev
 ```
 and change the _clamp function at network/policy.py to clamp
 
-
-# Start running
 ## Dependencies
-
 Run the following command to install the required Python modules:
 ```
 pip install -r requirements.txt
 ```
 Note: If you want to record through imageio, then the Python version must be 3.9+
 
+
+# Start running
 ## DAC
 
 ### 1. **Training the DAC Agent** (`train.py`):  
@@ -121,7 +120,7 @@ Note: Here the rollout_length is the size of buffer for PPO within AIRL framewor
 Note that:
 1. train_imitation.py and trainer.py need to be swapped to the ones in DAC-regularized-AIRL
 2. Put DAC-regularized-AIRL/dac_airl.py in AIRL/algo
-3. Add AIRL/algo/__init__.py with:
+3. Add AIRL/algo/\__init__.py with:
    ```
    from .dac_airl import AIRL_DAC
    ```
