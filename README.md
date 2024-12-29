@@ -104,8 +104,8 @@ python train_expert.py --cuda --env_id BipedalWalker-v3 --num_steps 100000 --see
 ```
 python collect_demo.py --cuda --env_id BipedalWalker-v3 --weight weights/BipedalWalker-v3.pth --buffer_size 1000000 --std 0.01 --p_rand 0.0 --seed 0
 ```
-Note 1: The buffer_size determines the size of demo trajectories
-**Note 2: Only for AIRL-only method, DAC-AIRL can skip this step**
+*Note 1: The buffer_size determines the size of demo trajectories
+***Note 2: Only for AIRL-only method, DAC-AIRL can skip this step**
 
 3. **Train AIRL** (`train_imitation.py`):
 ```
