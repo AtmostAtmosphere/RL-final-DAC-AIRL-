@@ -134,7 +134,3 @@ Note that:
 ```
 python train_imitation.py --algo airl+dac --cuda --env_id BipedalWalker-v3 --buffer buffers/BipedalWalker-v3/size10000_std0.01_prand0.0.pth --num_steps 1000000 --eval_interval 10000 --rollout_length 2000 --seed 0 --alpha 0.5
 ```
-
-
-
-
